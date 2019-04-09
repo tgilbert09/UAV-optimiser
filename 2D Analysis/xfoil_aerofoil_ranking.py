@@ -6,6 +6,9 @@ Assumes lift = aircraft weight
 
 .dat files created using xfoil
 >> XFOIL >> naca XXXX >> save XXXX.dat
+
+Uses daniel-de-vries/xfoil-python (pip install xfoil)
+Tested and created on Windows 10 using Python 3.6 64bit
 '''
 
 import numpy as np
