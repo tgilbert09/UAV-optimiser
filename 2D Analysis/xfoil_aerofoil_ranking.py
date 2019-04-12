@@ -65,7 +65,7 @@ def liftCoCalc ():
         massList.append(massList[i]+massSpacing)
     massMaxAdditional = massMax + massSpacing
     mass = np.array([massMin, massMaxAdditional, massSpacing])
-    cl = ((mass*g)/(0.5*rho*velocity**2*span))
+    cl = (((mass*g)/span)/(0.5*rho*velocity**2))
     cl = [ round(elem, 4) for elem in cl ]
     return cl, massList
 
