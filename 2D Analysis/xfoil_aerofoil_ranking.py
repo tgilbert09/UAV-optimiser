@@ -108,19 +108,19 @@ def displayResults():
     for v in zip(*rankedAerofoils_names):
             print (str(header).format(*v))
 
-chord = 0.3
 span = 10
 rho = 1.1685
 velocity = 41.6667
 g = 9.81
-reynolds = 2794120*chord
 
 massMin = 50
 massMax = 150
 massSpacing = 5
 
 xf = XFoil()
-xf.Re = reynolds
+
+#Reynolds number, unit chord (see XFOIL docs UNITS section)
+xf.Re = 2794120
 xf.max_iter = 100
 
 cl, massList = liftCoCalc()
