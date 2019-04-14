@@ -65,7 +65,7 @@ def liftCoCalc ():
         massList.append(massList[i]+massSpacing)
     massMaxAdditional = massMax + massSpacing
     mass = np.array([massMin, massMaxAdditional, massSpacing])
-    cl = (((mass*g)/span)/(0.5*rho*velocity**2))
+    cl = (((mass*g)/span)/(chord*0.5*rho*velocity**2))
     cl = [ round(elem, 4) for elem in cl ]
     return cl, massList
 
@@ -112,6 +112,8 @@ span = 10
 rho = 1.1685
 velocity = 41.6667
 g = 9.81
+reynolds_div_chord = 2794120
+chord = 0.3
 
 massMin = 50
 massMax = 150
@@ -120,7 +122,7 @@ massSpacing = 5
 xf = XFoil()
 
 #Reynolds number, unit chord (see XFOIL docs UNITS section)
-xf.Re = 2794120
+xf.Re = reynolds_div_chord * chord
 xf.max_iter = 100
 
 cl, massList = liftCoCalc()
