@@ -125,6 +125,8 @@ xf = XFoil()
 xf.Re = reynolds_div_chord * chord
 xf.max_iter = 100
 
+print("Reynolds Number: {0}\nMax iterations: {1}\n".format(xf.Re, xf.max_iter))
+      
 cl, massList = liftCoCalc()
 allAerofoils_obj = initialiseAerofoils()
 runAnalysis()
