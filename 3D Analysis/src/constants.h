@@ -18,8 +18,8 @@
 #define POINTS_PER_METRE 1   // 
 // I-Beam dimensions - see latex report for diagram
 // A is web thickness
-#define A 0.015
+#define A 0.008
 // C is height
-#define C 0.2
+#define C 0.018
 // D is width
-#define D 0.15
+#define D 0.018
