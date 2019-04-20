@@ -4,6 +4,22 @@
 #include "functions.h"
 #include "constants.h"
 
+double *FUNC_spanning(double dz, int number_of_points){
+	
+	int i;
+	double *z = malloc(number_of_points*sizeof(double));
+		
+	for( i = 0; i < number_of_points; ++i ){
+		z[i] = dz * i;
+		//cl[i] = centre_lift_2d * pow(1-pow(2*z[i]/span, 2), 0.5);
+		//load[i] = cl[i]*0.5*AIR_DENSITY*pow(VELOCITY, 2)*chord;
+		//printf("value of i: %i , %f, %f, %f\n", i, z[i], cl[i], load[i]);
+	}
+	
+	return z;
+	
+}
+
 double *FUNC_moment_distribution(double weight, double chord, double span, double dz, int number_of_points){	
 
 	// Program required

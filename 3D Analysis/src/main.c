@@ -7,7 +7,7 @@
 int main (void) {
 
    
-   double *moment_distribution;
+   double *moment_distribution, *z;
    int i;
 
    double weight = 100;
@@ -18,12 +18,13 @@ int main (void) {
    int number_of_points = (int)(((span/2)*POINTS_PER_METRE)+1);
    double dz = 1/(double)POINTS_PER_METRE;
 	
+   z = FUNC_spanning(number_of_points);
    moment_distribution = FUNC_moment_distribution(weight, chord, span, dz, number_of_points);
    
 
 	
    for ( i = 0; i < number_of_points; i++ ) {
-      printf( "Location ID: %i, Moment: %f\n", i, *(moment_distribution + i));
+      printf( "Location ID: %i, z: %f, Moment: %f\n", i, *(z+i), *(moment_distribution + i));
    }
    
    free(moment_distribution);
