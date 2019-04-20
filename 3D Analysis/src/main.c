@@ -23,6 +23,8 @@ int main (void) {
 	z = FUNC_spanLocations(dz, number_of_points);
 	moment = FUNC_moment_distribution(weight, span, number_of_points, z);
 	ib_dim = FUNC_ibeam_dimension(number_of_points, moment);
+	
+	printf("Total I-Beam height is currently set at (and should not exceed): %f\n", C);
 
 	printf("\nSpan Loc(m)\tMoment(Nm)\tWeb height(m)\n");
 	for( i = 0; i < number_of_points; ++i ){
