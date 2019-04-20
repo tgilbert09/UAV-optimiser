@@ -12,6 +12,10 @@ double *FUNC_spanLocations(double dz,
 	
 	// Create spanwise distances array
 	double *z = malloc(number_of_points*sizeof(double));
+	
+	// Raises exception incase something goes horribly wrong
+	if(!z)
+      return NULL;
 		
 	// Fill spanwise distances array
 	// The matrix (from 0 to whatever) represents root to tip
