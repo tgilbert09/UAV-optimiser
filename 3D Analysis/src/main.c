@@ -31,6 +31,7 @@ int main (void) {
    }
    
    free(moment_distribution);
+   free(z);
 
    return 0;
 }
