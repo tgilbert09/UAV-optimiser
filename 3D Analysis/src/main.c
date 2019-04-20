@@ -3,34 +3,32 @@
 #include "functions.h"
 #include "constants.h"
 
-/* main function to call above defined function */
 int main (void) {
 
-   
-   double *moment_distribution, *z;
+   double *distributed_moment, *z;
    int i;
 
-   double weight = 100;
-   double chord = 0.3;
+   double weight = 100*9.81;
    double span = 10;
+   
+   printf("\nTotal span: %f\tCurrent Weight %f N\n", span, weight);
    
    // Pre processing of useful/repetitive variables
    int number_of_points = (int)(((span/2)*POINTS_PER_METRE)+1);
-   	// Displays how many points (understanding purposes)
-	//printf("Numer of points (including zero): %i \n", number_of_points);
-	
+   // Displays how many points (understanding purposes)
+   printf("Numer of points (including zero): %i \n", number_of_points);
+   // Calculates step incremen
    double dz = 1/(double)POINTS_PER_METRE;
 	
-   z = FUNC_spanning(number_of_points);
-   moment_distribution = FUNC_moment_distribution(weight, chord, span, dz, number_of_points, z);
+   z = FUNC_spanning(dz, number_of_points);
+   distributed_moment = FUNC_moment_distribution(weight, span, number_of_points, z);
    
+   printf("\nSpan Loc\tMoment\n");
+	for( i = 0; i < number_of_points; ++i ){
+	   printf("%f\t%f \n", z[i], distributed_moment[i]);
+	}
 
-	
-   for ( i = 0; i < number_of_points; i++ ) {
-      printf( "Location ID: %i, z: %f, Moment: %f\n", i, *(z+i), *(moment_distribution + i));
-   }
-   
-   free(moment_distribution);
+   free(distributed_moment);
    free(z);
 
    return 0;

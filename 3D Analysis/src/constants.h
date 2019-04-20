@@ -15,7 +15,7 @@
 #define SAFTEY_FACTOR 0.3      // unitless
 /* How many spanwise "points" are used for the calculation,
    defines "dz" size, a higher POINTS_PER_METRE gives lower dz thus greater accuracy */
-#define POINTS_PER_METRE 10   // 
+#define POINTS_PER_METRE 1   // 
 
 
 
