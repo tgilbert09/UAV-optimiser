@@ -4,74 +4,90 @@
 #include "functions.h"
 #include "constants.h"
 
-double *FUNC_spanning(double dz, int number_of_points){
+double *FUNC_spanning(double dz,
+					  int number_of_points){
 	
+	// Program required
 	int i;
+	
+	// Create spanwise distances array
 	double *z = malloc(number_of_points*sizeof(double));
 		
+	// Fill spanwise distances array
+	// The matrix (from 0 to whatever) represents root to tip
 	for( i = 0; i < number_of_points; ++i ){
+		// z - spanwise locations
 		z[i] = dz * i;
-		//cl[i] = centre_lift_2d * pow(1-pow(2*z[i]/span, 2), 0.5);
-		//load[i] = cl[i]*0.5*AIR_DENSITY*pow(VELOCITY, 2)*chord;
-		//printf("value of i: %i , %f, %f, %f\n", i, z[i], cl[i], load[i]);
 	}
 	
 	return z;
 	
 }
 
-double *FUNC_moment_distribution(double weight, double chord, double span, double dz, int number_of_points, double *z){	
-
+double *FUNC_moment_distribution(double weight,
+								 double chord,
+								 double span,
+								 double dz,
+								 int number_of_points,
+								 double *z){	
+	
 	// Program required
 	int i;
 	
-	// Behind the scenes maths requirements
-	// Value of centre local lift coefficient to achieve required global lift coefficent
-	double centre_lift_2d;
+	// Calculates the required central sectional lift coefficient to attain the desired global CL
+	double centre_lift_2d = CL * 4/(span*M_PI/2);
+	//printf("Centre sectional lift coefficient: %f\n", centre_lift_2d);
 
-	
 	// The matrix (from 0 to whatever) represents root to tip
-	double cl[number_of_points],
-		   load[number_of_points],
+	double load[number_of_points],
 		   distributed_shear_force[number_of_points];
 	
-	// Special matrix which can be returned
+	// Creates memory space for distributed_moment array to be returned
 	double *distributed_moment = malloc(number_of_points*sizeof(double));
 	  
-	  // Raises exception incase something goes horribly wrong
-	  if(!distributed_moment)
-        return NULL;
+	// Raises exception incase something goes horribly wrong
+	if(!distributed_moment)
+      return NULL;
 	
 	
-	// Calculates the required central sectional lift coefficient to attain the desired global CL
-	centre_lift_2d = CL * 4/(span*M_PI/2);
-	//printf("Centre sectional lift coefficient: %f\n", centre_lift_2d);
 	
-	// Displays how many points working with for understanding
-	//printf("Numer of points (including zero): %i \n", number_of_points);
-
-	// z - spanwise locations
+	
+	/* Easier to understand but uses more memory?
 	// cl - sectional lift coefficients at given z
 	// load - force given a cl at given z
 	for( i = 0; i < number_of_points; ++i ){
-		//z[i] = dz * i;
 		cl[i] = centre_lift_2d * pow(1-pow(2*(*(z+i))/span, 2), 0.5);
 		load[i] = cl[i]*0.5*AIR_DENSITY*pow(VELOCITY, 2)*chord;
 		//printf("value of i: %i , %f, %f, %f\n", i, z[i], cl[i], load[i]);
 	}
+	*/
 	
-	// Strange setup required before for loop as I couldn't think of how to initiate it
-	// Only additionally complex due to reversing nature of these shear force and moment distributions
-	// (requires calc from tip to root not root to tip)
+	
+	/* Explanation
+		Calculates load (newtons/metre) distributed along span at given z location
+		centre_lift_2d * pow(1-pow(2*(*(z+i))/span, 2), 0.5) represents the local lift coefficient
+		This is then multiplied by 0.5*AIR_DENSITY*pow(VELOCITY, 2)*chord to get the local load at a given z	
+	*/
+	for( i = 0; i < number_of_points; ++i ){
+		load[i] = (centre_lift_2d * pow(1-pow(2*(*(z+i))/span, 2), 0.5))*0.5*AIR_DENSITY*pow(VELOCITY, 2)*chord;
+	}
+	
+	/* Initialises for loop
+	   Moment distribution requires calc from tip to root not root to tip
+	*/
 	distributed_shear_force[number_of_points-1] = load[number_of_points-1];
 	distributed_moment[number_of_points-1] = z[number_of_points-1] * load[number_of_points-1];
 	
-	// Start the first line of display
-	//printf("i: %i, location: %f, distributed shear: %f, distributed moment: %f\n", 
-	//number_of_points-1, z[number_of_points-1], distributed_shear_force[number_of_points-1], 
-	//distributed_moment[number_of_points-1]);
 	
-	// Continue with above in for loop!
+	/*
+	// Understanding purposes
+	printf("i: %i, location: %f, distributed shear: %f, distributed moment: %f\n", 
+	number_of_points-1, z[number_of_points-1], distributed_shear_force[number_of_points-1], 
+	distributed_moment[number_of_points-1]);
+	*/
+	
+	
+	// Continue with above in for loop
 	for( i = number_of_points-1; i > 0; --i ){
 		distributed_shear_force[i-1] = distributed_shear_force[i] + load[i-1] * dz;
 		distributed_moment[i-1] = distributed_moment[i] + (span/2 - *(z+i-1)) * load[i-1] * dz;

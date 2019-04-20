@@ -16,6 +16,9 @@ int main (void) {
    
    // Pre processing of useful/repetitive variables
    int number_of_points = (int)(((span/2)*POINTS_PER_METRE)+1);
+   	// Displays how many points (understanding purposes)
+	//printf("Numer of points (including zero): %i \n", number_of_points);
+	
    double dz = 1/(double)POINTS_PER_METRE;
 	
    z = FUNC_spanning(number_of_points);
