@@ -20,7 +20,7 @@ int main (void) {
    // Calculates step incremen
    double dz = 1/(double)POINTS_PER_METRE;
 	
-   z = FUNC_spanning(dz, number_of_points);
+   z = FUNC_spanLocations(dz, number_of_points);
    distributed_moment = FUNC_moment_distribution(weight, span, number_of_points, z);
    
    printf("\nSpan Loc(m)\tMoment(Nm)\n");

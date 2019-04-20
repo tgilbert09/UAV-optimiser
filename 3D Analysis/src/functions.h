@@ -1,2 +1,2 @@
-double * FUNC_spanning();
+double * FUNC_spanLocations();
 double * FUNC_moment_distribution();

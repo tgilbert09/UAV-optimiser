@@ -4,7 +4,7 @@
 #include "functions.h"
 #include "constants.h"
 
-double *FUNC_spanning(double dz,
+double *FUNC_spanLocations(double dz,
 					  int number_of_points){
 	
 	// Program required
