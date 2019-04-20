@@ -5,7 +5,7 @@
 
 int main (void) {
 
-   double *distributed_moment, *z;
+   double *moment, *z;
    int i;
 
    double weight = 100*9.81;
@@ -21,14 +21,14 @@ int main (void) {
    double dz = 1/(double)POINTS_PER_METRE;
 	
    z = FUNC_spanLocations(dz, number_of_points);
-   distributed_moment = FUNC_moment_distribution(weight, span, number_of_points, z);
+   moment = FUNC_moment_distribution(weight, span, number_of_points, z);
    
    printf("\nSpan Loc(m)\tMoment(Nm)\n");
 	for( i = 0; i < number_of_points; ++i ){
-	   printf("%f\t%f \n", z[i], distributed_moment[i]);
+	   printf("%f\t%f \n", z[i], moment[i]);
 	}
 
-   free(distributed_moment);
+   free(moment);
    free(z);
 
    return 0;
