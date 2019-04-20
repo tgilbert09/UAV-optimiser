@@ -48,7 +48,7 @@ double *FUNC_moment_distribution(double weight,
       return NULL;
 	
 	for( i = 0; i < number_of_points; ++i ){
-	  distributed_moment[i] = (3*weight*(pow((span/2 - z[i]),2) - pow((span/2 - z[i]),4)/(3*pow(span,2))))/(2*pow(span,2));
+	  distributed_moment[i] = ((3*weight)/(2*pow(span,2))) * (pow(z[i],2)/2 - (4*pow(z[i],4))/(12*pow(span,2)) - (span*z[i])/3 + pow(span,2)/16);
 	}
 	
 	// Return the gold..
