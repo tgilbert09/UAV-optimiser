@@ -1,2 +1,2 @@
-gcc -o ../build/main.exe main.c moment_distribution.c
+gcc -o ../build/main.exe main.c span_distributions.c
 ..\build\main.exe
