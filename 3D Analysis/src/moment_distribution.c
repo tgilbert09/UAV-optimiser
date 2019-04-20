@@ -20,7 +20,7 @@ double *FUNC_spanning(double dz, int number_of_points){
 	
 }
 
-double *FUNC_moment_distribution(double weight, double chord, double span, double dz, int number_of_points){	
+double *FUNC_moment_distribution(double weight, double chord, double span, double dz, int number_of_points, double *z){	
 
 	// Program required
 	int i;
@@ -31,8 +31,7 @@ double *FUNC_moment_distribution(double weight, double chord, double span, doubl
 
 	
 	// The matrix (from 0 to whatever) represents root to tip
-	double z[number_of_points],
-		   cl[number_of_points],
+	double cl[number_of_points],
 		   load[number_of_points],
 		   distributed_shear_force[number_of_points];
 	
@@ -55,8 +54,8 @@ double *FUNC_moment_distribution(double weight, double chord, double span, doubl
 	// cl - sectional lift coefficients at given z
 	// load - force given a cl at given z
 	for( i = 0; i < number_of_points; ++i ){
-		z[i] = dz * i;
-		cl[i] = centre_lift_2d * pow(1-pow(2*z[i]/span, 2), 0.5);
+		//z[i] = dz * i;
+		cl[i] = centre_lift_2d * pow(1-pow(2*(*(z+i))/span, 2), 0.5);
 		load[i] = cl[i]*0.5*AIR_DENSITY*pow(VELOCITY, 2)*chord;
 		//printf("value of i: %i , %f, %f, %f\n", i, z[i], cl[i], load[i]);
 	}
@@ -75,7 +74,7 @@ double *FUNC_moment_distribution(double weight, double chord, double span, doubl
 	// Continue with above in for loop!
 	for( i = number_of_points-1; i > 0; --i ){
 		distributed_shear_force[i-1] = distributed_shear_force[i] + load[i-1] * dz;
-		distributed_moment[i-1] = distributed_moment[i] + (span/2 - z[i-1]) * load[i-1] * dz;
+		distributed_moment[i-1] = distributed_moment[i] + (span/2 - *(z+i-1)) * load[i-1] * dz;
 		//printf("i: %i, location: %f, distributed shear: %f, distributed moment: %f\n", i-1, z[i-1], 
 		//distributed_shear_force[i-1], distributed_moment[i-1]);
 	}

@@ -19,7 +19,7 @@ int main (void) {
    double dz = 1/(double)POINTS_PER_METRE;
 	
    z = FUNC_spanning(number_of_points);
-   moment_distribution = FUNC_moment_distribution(weight, chord, span, dz, number_of_points);
+   moment_distribution = FUNC_moment_distribution(weight, chord, span, dz, number_of_points, z);
    
 
 	
