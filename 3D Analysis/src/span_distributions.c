@@ -4,9 +4,10 @@
 #include "functions.h"
 #include "constants.h"
 
+
 double *FUNC_spanLocations(double dz,
 					  int number_of_points){
-	
+
 	// Program required
 	int i;
 	
@@ -21,8 +22,8 @@ double *FUNC_spanLocations(double dz,
 	}
 	
 	return z;
-	
 }
+
 
 double *FUNC_moment_distribution(double weight,
 								 double span,
@@ -42,7 +43,6 @@ double *FUNC_moment_distribution(double weight,
 	// Raises exception incase something goes horribly wrong
 	if(!distributed_moment)
       return NULL;
-	
 	
 	for( i = 0; i < number_of_points; ++i ){
 	  distributed_moment[i] = (3*weight*(pow((span/2 - z[i]),2) - pow((span/2 - z[i]),4)/(3*pow(span,2))))/(2*pow(span,2));
