@@ -27,6 +27,9 @@ int main (void) {
 	for( i = 0; i < number_of_points; ++i ){
 	   printf("%f\t%f \n", z[i], moment[i]);
 	}
+	
+   // Testing new function
+   printf("\nTesting that.. hi %f\n", FUNC_ibeam_dimension(moment));
 
    free(moment);
    free(z);

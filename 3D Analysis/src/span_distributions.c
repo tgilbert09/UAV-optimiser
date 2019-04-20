@@ -4,7 +4,6 @@
 #include "functions.h"
 #include "constants.h"
 
-
 double *FUNC_spanLocations(double dz,
 					  int number_of_points){
 
