@@ -10,7 +10,7 @@
 #define SIGMA_MAX 210e6        // N/m^2
 #define MATERIAL_DENSITY 15    // kg/m^3
 // Allowable stress saftey factor (percentage of SIGMA_MAX allowable)
-#define SAFTEY_FACTOR 0.19      // unitless
+#define SAFTEY_FACTOR 0.035      // unitless // supposed to be 0.19 
 
 // Structures
 // I-Beam dimensions - see latex report for diagram
@@ -22,7 +22,7 @@
 #define D 0.133
 // Cap length is the amount shorter the I-beam is than the wing
 // Special cap structure used for the rest of the wing
-#define CAP_LENGTH 0.1         // m
+#define CAP_LENGTH 0.6         // m
 
 /* How many spanwise "points" are used for the calculation,
    defines "dz" size, a higher POINTS_PER_METRE gives lower dz thus greater accuracy */

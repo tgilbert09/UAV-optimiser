@@ -10,7 +10,7 @@ int main (void) {
 	int i;
 
 	double weight = 100*9.81;
-	double span = 6;
+	double span = 10;
 	double root_chord = 0.4;
 	double thick_over_chord = 0.08;
 	int ib_cutoff;
