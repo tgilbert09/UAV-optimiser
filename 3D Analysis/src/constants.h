@@ -8,7 +8,7 @@
 
 // Materials
 #define SIGMA_MAX 210e6        // N/m^2
-#define MATERIAL_DENSITY 15    // kg/m^3
+#define IB_MATERIAL_DENSITY 2800    // kg/m^3
 // Allowable stress saftey factor (percentage of SIGMA_MAX allowable)
 #define SAFTEY_FACTOR 0.035      // unitless // supposed to be 0.19 
 
@@ -25,5 +25,9 @@
 #define CAP_LENGTH 0.6         // m
 
 /* How many spanwise "points" are used for the calculation,
-   defines "dz" size, a higher POINTS_PER_METRE gives lower dz thus greater accuracy */
-#define POINTS_PER_METRE 1   // 
+   defines "dz" size, a higher POINTS_PER_METRE gives lower dz thus greater accuracy
+   100 gives ~ 1 d.p. accuracy		5.205173kg
+   1000 gives ~ 2 d.p. accuracy 	5.186109
+   10,000 gives ~ 3.d.p accuracy	5.184190
+   100,000 gives 					5.184004*/
+#define POINTS_PER_METRE 10   // 
