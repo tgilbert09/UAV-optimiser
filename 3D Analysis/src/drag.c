@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include "functions.h"
 #include "constants.h"
 
 double FUNC_weight(int number_of_points, double *ib_area, double dz){

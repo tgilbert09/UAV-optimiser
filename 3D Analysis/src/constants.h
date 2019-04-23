@@ -3,8 +3,6 @@
 // Aerodynamics
 #define VELOCITY 41.6667       // m/s
 #define AIR_DENSITY 1.1685     // kg/m^3
-// Target 3D global lift coefficient
-#define CL 0.5
 
 // Materials
 #define SIGMA_MAX 210e6        // N/m^2
@@ -35,4 +33,4 @@
    38 for 4m span
    30 for 5m span
    25 for 6m span*/
-#define POINTS_PER_METRE 500   // 
+#define POINTS_PER_METRE 1   // 

@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-#include "functions.h"
 #include "constants.h"
 
 double *FUNC_spanLocations(double dz,
@@ -30,14 +29,18 @@ double *FUNC_spanLocations(double dz,
 
 double *FUNC_moment_distribution(double weight,
 								 double span,
+								 double root_chord,
 								 int number_of_points,
 								 double *z){	
 	
 	// Program required
 	int i;
 	
+	double global_CL;
+	global_CL = weight/(0.5*AIR_DENSITY*pow(VELOCITY,2)*span*(8/(3*M_PI))*root_chord);
+	
 	// Calculates the required central sectional lift coefficient to attain the desired global CL
-	double centre_lift_2d = CL * 4/(span*M_PI/2);
+	double centre_lift_2d = global_CL * 4/(span*M_PI/2);
 	printf("Centre sectional lift coefficient: %f\n", centre_lift_2d);
 	
 	// Creates memory space for distributed_moment array to be returned

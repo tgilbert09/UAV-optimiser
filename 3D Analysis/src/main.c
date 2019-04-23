@@ -28,7 +28,7 @@ int main (void) {
 	printf("i beam cut %i\n",ib_cutoff);
 
 	z = FUNC_spanLocations(dz, number_of_points);
-	moment = FUNC_moment_distribution(weight, span, number_of_points, z);
+	moment = FUNC_moment_distribution(weight, span, root_chord, number_of_points, z);
 	chord = FUNC_chord(root_chord, number_of_points, z);
 	ib_dim_C = FUNC_ibeam_C(number_of_points, z, chord, thick_over_chord, ib_cutoff);
 	ib_dim_D = FUNC_ibeam_D(number_of_points, z, chord, ib_cutoff);
