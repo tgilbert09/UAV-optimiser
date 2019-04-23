@@ -11,3 +11,4 @@ double *FUNC_weight_moment_distribution();
 double *FUNC_total_moment_distribution();
 double FUNC_total_wing_weight();
 double FUNC_drag();
+void FUNC_init_run();
