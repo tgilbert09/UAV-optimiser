@@ -81,7 +81,7 @@ int main (void) {
 
 	// Free memory n that
 	free(total_moment);
-	
+	free(wing_weight);
 	free(ib_area);
 	free(ib_dim_B);
 	free(ib_dim_D);
