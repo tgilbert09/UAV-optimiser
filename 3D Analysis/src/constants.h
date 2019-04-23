@@ -29,5 +29,9 @@
    100 gives ~ 1 d.p. accuracy		5.205173kg
    1000 gives ~ 2 d.p. accuracy 	5.186109
    10,000 gives ~ 3.d.p accuracy	5.184190
-   100,000 gives 					5.184004*/
-#define POINTS_PER_METRE 10   // 
+   100,000 gives 					5.184004
+   Getting numberical errors when POINTS_PER_METRE < span*10 - 2
+   38 for 4m span
+   30 for 5m span
+   25 for 6m span*/
+#define POINTS_PER_METRE 25   // 
