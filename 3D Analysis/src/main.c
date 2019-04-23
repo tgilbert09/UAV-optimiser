@@ -5,7 +5,7 @@
 
 int main (void) {
 
-	double *moment, *z, *ib_dim_B, *chord, *ib_dim_C, *ib_dim_D;
+	double *moment, *z, *ib_dim_B, *chord, *ib_dim_C, *ib_dim_D, *ib_area;
 	
 	int i;
 
@@ -33,14 +33,15 @@ int main (void) {
 	ib_dim_C = FUNC_ibeam_C(number_of_points, z, chord, thick_over_chord, ib_cutoff);
 	ib_dim_D = FUNC_ibeam_D(number_of_points, z, chord, ib_cutoff);
 	ib_dim_B = FUNC_ibeam_B(number_of_points, moment, z, ib_dim_C, ib_dim_D, ib_cutoff);
+	ib_area = FUNC_ibeam_area(number_of_points, ib_dim_C, ib_dim_D, ib_dim_B, ib_cutoff);
 
 	
 	
 	printf("Total I-Beam height is currently set at (and should not exceed): %f\n", C);
 
-	printf("\nSpan Loc(m)\tChord(m)\tIB Height(m)\tIB Width(m)\tMoment(Nm)\tWeb height(m)\n");
+	printf("\nSpan Loc(m)\tChord(m)\tIB Height(m)\tIB Width(m)\tMoment(Nm)\tWeb height(m)\tIB area(m2)\n");
 	for( i = 0; i < number_of_points; ++i ){
-		printf("%f\t%f\t%f\t%f\t%f\t%f\n", z[i], chord[i], ib_dim_C[i], ib_dim_D[i], moment[i], ib_dim_B[i]);
+		printf("%f\t%f\t%f\t%f\t%f\t%f\t%f\n", z[i], chord[i], ib_dim_C[i], ib_dim_D[i], moment[i], ib_dim_B[i], ib_area[i]);
 	}
 
 	

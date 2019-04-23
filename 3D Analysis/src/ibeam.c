@@ -79,3 +79,20 @@ double *FUNC_ibeam_B(int number_of_points, double *M, double *z, double *ib_dim_
 	return ib_dim_B;
 }
 
+
+double *FUNC_ibeam_area(int number_of_points, double *ib_dim_C, double *ib_dim_D, double *ib_dim_B, int ib_cutoff){
+	int i;
+	
+	// Creates memory space for distributed_moment array to be returned
+	double *ib_area = malloc(number_of_points*sizeof(double));
+	  
+	// Raises exception incase something goes horribly wrong
+	if(!ib_area)
+		return NULL;
+	
+		// Creates width dimension array upto cutoff point
+	for( i = 0; i < ib_cutoff; ++i ){
+		ib_area[i] = (ib_dim_C[i] * ib_dim_D[i]) - ib_dim_B[i]*(ib_dim_D[i]-A);
+	}
+	return ib_area;
+}
