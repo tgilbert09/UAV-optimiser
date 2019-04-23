@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "functions.h"
 #include "constants.h"
 
@@ -11,7 +12,7 @@ int main (void) {
 	
 	// Empty no wing enw_weight
 	double enw_weight = 90.884*9.81;
-	double total_weight, total_wing_weight, drag;
+	double total_weight, total_wing_weight, drag, total_weight_old, relative_error;
 	double span = 10;
 	double root_chord = 0.4;
 	double thick_over_chord = 0.08;
@@ -41,10 +42,12 @@ int main (void) {
 	// Setup initial conditions
 	wing_weight = FUNC_wing_weight_initial(number_of_points);
 	total_weight = enw_weight;
+	total_weight_old = total_weight;
+	relative_error = 10;
 	
 	
 	
-	for( iter = 0; iter < 20; ++iter ){
+	while(relative_error > 1 ){
 	total_moment = FUNC_total_moment_distribution(number_of_points, total_weight, span, root_chord, wing_weight, z, dz);
 	total_moment[number_of_points-1] = 0;
 	ib_dim_B = FUNC_ibeam_B(number_of_points, total_moment, z, ib_dim_C, ib_dim_D, ib_cutoff);
@@ -56,6 +59,10 @@ int main (void) {
 	total_weight = enw_weight+2*total_wing_weight;
 	drag = FUNC_drag(total_weight, span);
 	
+	// Relative error in grams
+	relative_error = fabs(total_weight - total_weight_old)*1000;
+	total_weight_old = total_weight;
+	
 	/*
 	printf("\nSpan Loc(m)\tChord(m)\tIB Height(m)\tIB Width(m)\tMoment(Nm)\tWeb Height(m)\tIB Area(m2)\tWing Weight(N)\n");
 	for( i = 0; i < number_of_points; ++i ){
@@ -63,8 +70,10 @@ int main (void) {
 	}
 	*/
 	
-	printf("\nThe total mass is: %f kg\n", (total_weight/9.81));
-	printf("The induced drag is: %f N\n", drag);	
+	printf("\nThe total mass is:\t%f kg\n", (total_weight/9.81));
+	printf("The induced drag is:\t%f N\n", drag);
+	printf("The relative error is:\t%f g\n", relative_error);
+	
 	}
 
 
