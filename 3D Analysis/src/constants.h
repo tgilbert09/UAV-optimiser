@@ -26,12 +26,13 @@
 
 /* How many spanwise "points" are used for the calculation,
    defines "dz" size, a higher POINTS_PER_METRE gives lower dz thus greater accuracy
-   100 gives ~ 1 d.p. accuracy		5.205173kg
-   1000 gives ~ 2 d.p. accuracy 	5.186109
-   10,000 gives ~ 3.d.p accuracy	5.184190
-   100,000 gives 					5.184004
-   Getting numberical errors when POINTS_PER_METRE < span*10 - 2
+   50 gives			5.185721	
+   100 gives		5.184761	
+   1000 gives		5.184068	
+   10,000 gives		5.183986	
+   100,000 gives	5.183983
+   Getting numberical errors when POINTS_PER_METRE is too small, minimum value examples shown below
    38 for 4m span
    30 for 5m span
    25 for 6m span*/
-#define POINTS_PER_METRE 25   // 
+#define POINTS_PER_METRE 500   // 
