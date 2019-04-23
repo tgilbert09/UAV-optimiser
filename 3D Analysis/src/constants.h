@@ -33,4 +33,4 @@
    38 for 4m span
    30 for 5m span
    25 for 6m span*/
-#define POINTS_PER_METRE 1   // 
+#define POINTS_PER_METRE 100   // 
