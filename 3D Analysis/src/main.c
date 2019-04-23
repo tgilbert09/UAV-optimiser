@@ -7,10 +7,10 @@ int main (void) {
 
 	double *z, *ib_dim_B, *chord, *ib_dim_C, *ib_dim_D, *ib_area, *wing_weight, *total_moment;
 	
-	int i;
+	int i, iter;
 	
 	// Empty no wing enw_weight
-	double enw_weight = 100*9.81;
+	double enw_weight = 90.884*9.81;
 	double total_weight, total_wing_weight, drag;
 	double span = 10;
 	double root_chord = 0.4;
@@ -43,31 +43,36 @@ int main (void) {
 	total_weight = enw_weight;
 	
 	
+	
+	for( iter = 0; iter < 20; ++iter ){
 	total_moment = FUNC_total_moment_distribution(number_of_points, total_weight, span, root_chord, wing_weight, z, dz);
+	total_moment[number_of_points-1] = 0;
 	ib_dim_B = FUNC_ibeam_B(number_of_points, total_moment, z, ib_dim_C, ib_dim_D, ib_cutoff);
 	ib_area = FUNC_ibeam_area(number_of_points, ib_dim_C, ib_dim_D, ib_dim_B, ib_cutoff);
-	wing_weight = FUNC_wing_weight(number_of_points, ib_area, dz);
+	wing_weight = FUNC_wing_weight(number_of_points, ib_area, dz, chord, ib_cutoff);
 	
 	total_wing_weight = FUNC_total_wing_weight(number_of_points, wing_weight, dz);
 	
 	total_weight = enw_weight+2*total_wing_weight;
 	drag = FUNC_drag(total_weight, span);
 	
-
+	/*
 	printf("\nSpan Loc(m)\tChord(m)\tIB Height(m)\tIB Width(m)\tMoment(Nm)\tWeb Height(m)\tIB Area(m2)\tWing Weight(N)\n");
 	for( i = 0; i < number_of_points; ++i ){
 		printf("%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", z[i], chord[i], ib_dim_C[i], ib_dim_D[i], total_moment[i], ib_dim_B[i], ib_area[i], wing_weight[i]);
 	}
+	*/
 	
 	printf("\nThe total mass is: %f kg\n", (total_weight/9.81));
-	printf("\nThe induced drag is: %f N\n", drag);
-	
-	
+	printf("The induced drag is: %f N\n", drag);	
+	}
+
+
 	
 
 	// Free memory n that
 	free(total_moment);
-	free(wing_weight);
+	
 	free(ib_area);
 	free(ib_dim_B);
 	free(ib_dim_D);

@@ -21,6 +21,13 @@
 // Cap length is the amount shorter the I-beam is than the wing
 // Special cap structure used for the rest of the wing
 #define CAP_LENGTH 0.6         // m
+// Wing skin properties
+#define SKIN_DENSITY 1780		// kg/m3
+#define SKIN_THICKNESS 0.0005
+// These coeffients estimate the aerofoil perimeter in terms of (SKIN_COEFFICIENT_1)chord + SKIN_COEFFICIENT_2
+#define SKIN_COEFFICIENT_1 2.123
+#define SKIN_COEFFICIENT_2 -0.039525
+
 
 /* How many spanwise "points" are used for the calculation,
    defines "dz" size, a higher POINTS_PER_METRE gives lower dz thus greater accuracy
@@ -33,4 +40,4 @@
    38 for 4m span
    30 for 5m span
    25 for 6m span*/
-#define POINTS_PER_METRE 100   // 
+#define POINTS_PER_METRE 500   // 

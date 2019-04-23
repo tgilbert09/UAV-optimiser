@@ -41,7 +41,7 @@ double *FUNC_lift_moment_distribution(double weight,
 	
 	// Calculates the required central sectional lift coefficient to attain the desired global CL
 	double centre_lift_2d = global_CL * 4/(span*M_PI/2);
-	printf("Centre sectional lift coefficient: %f\n", centre_lift_2d);
+	//printf("Centre sectional lift coefficient: %f\n", centre_lift_2d);
 	
 	// Creates memory space for distributed_moment array to be returned
 	double *distributed_moment = malloc(number_of_points*sizeof(double));
@@ -103,7 +103,7 @@ double *FUNC_total_moment_distribution(int number_of_points, double total_weight
 	wing_moment = FUNC_weight_moment_distribution(number_of_points, wing_weight, z, dz);
 	
 	for( i = 0; i < number_of_points; ++i ){
-	  distributed_moment[i] = lift_moment[i] - wing_moment[i];
+	  distributed_moment[i] = lift_moment[i]; - wing_moment[i];
 	}
 	
 	// Free memory

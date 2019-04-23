@@ -75,6 +75,13 @@ double *FUNC_ibeam_B(int number_of_points, double *M, double *z, double *ib_dim_
 			ib_dim_B[i] = ib_dim_C[i] - 0.002;
 		}
 	}
+	
+	/*
+	// Sorts out cap area
+	for( i = ib_cutoff; i < number_of_points; ++i ){
+		ib_dim_B[i] = 0.0;	
+	}
+	*/
 	return ib_dim_B;
 }
 
@@ -91,7 +98,14 @@ double *FUNC_ibeam_area(int number_of_points, double *ib_dim_C, double *ib_dim_D
 	
 		// Creates width dimension array upto cutoff point
 	for( i = 0; i < ib_cutoff; ++i ){
-		ib_area[i] = (ib_dim_C[i] * ib_dim_D[i]) - ib_dim_B[i]*(ib_dim_D[i]-A);
+		ib_area[i] = (ib_dim_C[i] * ib_dim_D[i]) - (ib_dim_B[i]*(ib_dim_D[i]-A));
 	}
+	
+
+	for( i = ib_cutoff; i < number_of_points; ++i ){
+		ib_area[i] = 0.0;
+	}
+
+	
 	return ib_area;
 }
