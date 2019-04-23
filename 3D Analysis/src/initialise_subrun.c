@@ -10,6 +10,7 @@ double FUNC_init_run (double span, double root_chord, int report) {
 	
 	int i, iter;
 	
+	
 	// Empty no wing enw_weight
 	double enw_weight = 90.884*9.81;
 	double total_weight, total_wing_weight, drag, total_weight_old, relative_error;
@@ -70,12 +71,19 @@ double FUNC_init_run (double span, double root_chord, int report) {
 	}
 	*/
 	
+	
 	if(report) {
 	printf("\nThe total mass is:\t%f kg\n", (total_weight/9.81));
 	printf("The induced drag is:\t%f N\n", drag);
 	printf("The relative error is:\t%f g\n", relative_error);
 	}
 	}
+	
+	if (ib_dim_B[0] < 0){
+		drag = 30;
+	}
+	
+	
 	
 	// Free memory n that
 	free(total_moment);
