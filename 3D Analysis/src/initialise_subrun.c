@@ -4,7 +4,7 @@
 #include "functions.h"
 #include "constants.h"
 
-void FUNC_init_run (double span, double root_chord, int report) {
+double FUNC_init_run (double span, double root_chord, int report) {
 
 	double *z, *ib_dim_B, *chord, *ib_dim_C, *ib_dim_D, *ib_area, *wing_weight, *total_moment;
 	
@@ -19,13 +19,13 @@ void FUNC_init_run (double span, double root_chord, int report) {
 	int ib_cutoff;
 
 	// Display run specific information
-	printf("\nTotal span: %fm\tEmpty no wing mass %fN\n", span, enw_weight/9.81);
+	//printf("\nTotal span: %fm\tRoot Chord: %f\t\nEmpty no wing mass %fN\n", span, root_chord, enw_weight/9.81);
 
 	// Pre processing of useful/repetitive variables
 	int number_of_points = (int)(((span/2)*POINTS_PER_METRE)+1);
 	
 	// Displays how many points (understanding purposes)
-	printf("Numer of points (including zero): %i \n", number_of_points);
+	//printf("Numer of points (including zero): %i \n", number_of_points);
 	
 	// Calculates step incremen
 	double dz = 1/(double)POINTS_PER_METRE;
@@ -87,6 +87,6 @@ void FUNC_init_run (double span, double root_chord, int report) {
 	free(chord);
 	free(z);
 	
-
+return drag;
 
 }
