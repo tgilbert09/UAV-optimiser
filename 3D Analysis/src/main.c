@@ -21,10 +21,10 @@ int main (void) {
 	printf("Root Chord(m)\tSpan(m)\t\tDrag(N)\n");	
 	
 	chord_points = (int)((END_CHORD-START_CHORD)*CHORD_POINTS_PER_METRE);
-	chord_increment = (double)(END_CHORD-START_CHORD)/chord_points;
+	chord_increment = (double)((END_CHORD-START_CHORD)/chord_points);
 
 	span_points = (int)((END_SPAN-START_SPAN)*SPAN_POINTS_PER_METRE);
-	span_increment = (double)(END_SPAN-START_SPAN)/span_points;
+	span_increment = (double)((END_SPAN-START_SPAN)/span_points);
 	
 	FILE *fp;
 	fp = fopen("induced_drag_landscape_results.csv", "w");

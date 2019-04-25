@@ -19,6 +19,7 @@ if os.path.exists("viscous_drag_landscape_results.csv"):
     os.remove("viscous_drag_landscape_results.csv")
 
 from math import isnan
+from math import pi
 from xfoil import XFoil
 from xfoil.model import Airfoil
 
@@ -109,14 +110,27 @@ mass = 100
 xf = XFoil()
 xf.max_iter = 100
 
+START_CHORD = 0.3
+END_CHORD = 1.0
+CHORD_POINTS_PER_METRE = 10
+
+START_SPAN = 4
+END_SPAN = 10
+SPAN_POINTS_PER_METRE = 10
+
+chord_points = int((END_CHORD-START_CHORD)*CHORD_POINTS_PER_METRE)
+chord_increment = float((END_CHORD-START_CHORD)/chord_points)
+
+span_points = int((END_SPAN-START_SPAN)*SPAN_POINTS_PER_METRE)
+span_increment = float((END_SPAN-START_SPAN)/span_points)
 
 print("Max iterations: {0}\nMass: {1}Kg".format(xf.max_iter, mass))
 
-for j in range(10):
-    for i in range(8):
-        span = ((2*(i+1)))/2+2
-        chord = 0.3+(j*0.1)
-        chord = round(chord, 2)
+for j in range(chord_points):
+    chord = START_CHORD+(j*chord_increment)*(8/(3*pi))
+    chord = round(chord, 2)
+    for i in range(span_points):
+        span = START_SPAN+(i*span_increment)
         span = round(span, 2)
 
         #Reynolds number, unit chord (see XFOIL docs UNITS section)

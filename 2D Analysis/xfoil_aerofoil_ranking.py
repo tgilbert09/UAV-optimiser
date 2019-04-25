@@ -114,7 +114,8 @@ rho = 1.1685
 velocity = 41.6667
 g = 9.81
 reynolds_div_chord = 2794120
-chord = 0.4 * 8/(3*pi)
+root_chord = 0.4
+chord = root_chord * 8/(3*pi)
 
 massMin = 50
 massMax = 150
