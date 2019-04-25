@@ -80,7 +80,7 @@ double FUNC_init_run (double span, double root_chord, int report) {
 	}
 	
 	if (ib_dim_B[0] < 0){
-		drag = 30;
+		drag = 999;
 	}
 	
 	

@@ -24,8 +24,9 @@ int main (void) {
 	chord_increment = (double)((END_CHORD-START_CHORD)/chord_points);
 
 	span_points = (int)((END_SPAN-START_SPAN)*SPAN_POINTS_PER_METRE);
-	span_increment = (double)((END_SPAN-START_SPAN)/span_points);
+	span_increment = (double)((END_SPAN-START_SPAN)/((double)span_points));
 	
+	printf("%f",span_increment);
 	FILE *fp;
 	fp = fopen("induced_drag_landscape_results.csv", "w");
 	

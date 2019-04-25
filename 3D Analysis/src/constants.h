@@ -4,11 +4,11 @@
 #define VELOCITY 41.6667       // m/s
 #define AIR_DENSITY 1.1685     // kg/m^3
 
-// Materials
-#define SIGMA_MAX 210e6        // N/m^2
-#define IB_MATERIAL_DENSITY 2800    // kg/m^3
+// Materials - Al 6061
+#define SIGMA_MAX 290e6        // N/m^2
+#define IB_MATERIAL_DENSITY 2700    // kg/m^3
 // Allowable stress saftey factor (percentage of SIGMA_MAX allowable)
-#define SAFTEY_FACTOR 0.035      // unitless // supposed to be 0.19 
+#define SAFTEY_FACTOR 0.5      // unitless // supposed to be 0.19   0.035
 
 // Structures
 // I-Beam dimensions - see latex report for diagram
@@ -40,11 +40,11 @@
 
 // Wing setup
 // Chord variable testing
-#define START_CHORD 0.3
-#define END_CHORD 1.0
-#define CHORD_POINTS_PER_METRE 10
+#define START_CHORD 0.1
+#define END_CHORD 0.3
+#define CHORD_POINTS_PER_METRE 100
 // Span variable testing
-#define START_SPAN 2
+#define START_SPAN 8
 #define END_SPAN 10
 #define SPAN_POINTS_PER_METRE 10
 
