@@ -30,14 +30,26 @@
 
 
 /* How many spanwise "points" are used for the calculation,
-   defines "dz" size, a higher POINTS_PER_METRE gives lower dz thus greater accuracy
-   50 gives			5.185721	
-   100 gives		5.184761	
-   1000 gives		5.184068	
-   10,000 gives		5.183986	
-   100,000 gives	5.183983
+   defines "dz" size, a higher POINTS_PER_METRE --> lower dz --> greater accuracy
    Getting numberical errors when POINTS_PER_METRE is too small, minimum value examples shown below
    38 for 4m span
    30 for 5m span
    25 for 6m span*/
 #define POINTS_PER_METRE 500   // 
+
+
+// Wing setup
+// Chord variable testing
+#define START_CHORD 0.3
+#define END_CHORD 1.0
+#define CHORD_POINTS_PER_METRE 10
+// Span variable testing
+#define START_SPAN 2
+#define END_SPAN 10
+#define SPAN_POINTS_PER_METRE 10
+
+
+
+
+
+
