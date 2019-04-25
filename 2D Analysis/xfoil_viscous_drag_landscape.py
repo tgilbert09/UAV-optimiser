@@ -94,7 +94,7 @@ def displayResults():
     print("Best: naca {0} - Drag coefficient {1}".format(bestAerofoil_obj.name, bestAerofoil_obj.cd))
 
 def saveResults():
-    datarow = [span, chord, bestAerofoil_obj.cd]
+    datarow = [span, root_chord, bestAerofoil_obj.cd]
     with open(r'viscous_drag_landscape_results.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(datarow)
@@ -111,12 +111,12 @@ xf = XFoil()
 xf.max_iter = 100
 
 START_CHORD = 0.3
-END_CHORD = 1.0
+END_CHORD = 0.5
 CHORD_POINTS_PER_METRE = 10
 
-START_SPAN = 4
+START_SPAN = 8
 END_SPAN = 10
-SPAN_POINTS_PER_METRE = 10
+SPAN_POINTS_PER_METRE = 1
 
 chord_points = int((END_CHORD-START_CHORD)*CHORD_POINTS_PER_METRE)
 chord_increment = float((END_CHORD-START_CHORD)/chord_points)
@@ -126,17 +126,18 @@ span_increment = float((END_SPAN-START_SPAN)/span_points)
 
 print("Max iterations: {0}\nMass: {1}Kg".format(xf.max_iter, mass))
 
-for j in range(chord_points):
+for j in range(chord_points+1):
+    root_chord = START_CHORD+(j*chord_increment)
     chord = START_CHORD+(j*chord_increment)*(8/(3*pi))
     chord = round(chord, 2)
-    for i in range(span_points):
+    for i in range(span_points+1):
         span = START_SPAN+(i*span_increment)
         span = round(span, 2)
 
         #Reynolds number, unit chord (see XFOIL docs UNITS section)
         xf.Re = reynolds_div_chord * chord
 
-        print("\nSpan: {0}m\tChord: {1}m\tReynolds: {2}".format(span, chord, xf.Re))
+        print("\nSpan: {0}m\tChord: {1}m\tReynolds: {2}".format(span, root_chord, xf.Re))
               
         cl = liftCoCalc()
         allAerofoils_obj = initialiseAerofoils()
