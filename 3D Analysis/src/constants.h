@@ -40,11 +40,11 @@
 
 // Wing setup
 // Chord variable testing
-#define START_CHORD 0.1
-#define END_CHORD 0.3
+#define START_CHORD 0.5
+#define END_CHORD 1
 #define CHORD_POINTS_PER_METRE 100
 // Span variable testing
-#define START_SPAN 8
+#define START_SPAN 9
 #define END_SPAN 10
 #define SPAN_POINTS_PER_METRE 10
 

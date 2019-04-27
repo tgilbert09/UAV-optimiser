@@ -37,7 +37,7 @@ double *FUNC_lift_moment_distribution(double weight,
 	int i;
 	
 	double global_CL;
-	global_CL = weight/(0.5*AIR_DENSITY*pow(VELOCITY,2)*span*(8/(3*M_PI))*root_chord);
+	global_CL = weight/(0.5*AIR_DENSITY*pow(VELOCITY,2)*span*(M_PI/4)*root_chord);
 	
 	// Calculates the required central sectional lift coefficient to attain the desired global CL
 	double centre_lift_2d = global_CL * 4/(span*M_PI/2);
@@ -51,7 +51,7 @@ double *FUNC_lift_moment_distribution(double weight,
       return NULL;
 	
 	for( i = 0; i < number_of_points; ++i ){
-	  distributed_moment[i] = ((3*weight)/(2*pow(span,2))) * (pow(z[i],2)/2 - (4*pow(z[i],4))/(12*pow(span,2)) - (span*z[i])/3 + pow(span,2)/16);
+	  distributed_moment[i] = ((16*weight)/(pow(M_PI, 2)*pow(span,2))) * (pow(z[i],2)/2 - (pow(z[i],4))/(3*pow(span,2)) - (span*z[i])/3 + pow(span,2)/16);
 	}
 	
 	// Return the gold..
