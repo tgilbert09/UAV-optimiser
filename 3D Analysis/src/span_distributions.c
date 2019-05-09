@@ -50,9 +50,11 @@ double *FUNC_lift_moment_distribution(double weight,
 	if(!distributed_moment)
       return NULL;
 	
+	weight = 1000;
 	for( i = 0; i < number_of_points; ++i ){
 	  //distributed_moment[i] = ((16*weight)/(pow(M_PI, 2)*pow(span,2))) * (pow(z[i],2)/2 - (pow(z[i],4))/(3*pow(span,2)) - (span*z[i])/3 + pow(span,2)/16);
-	  distributed_moment[i] = weight/(6*M_PI) * ( 6*z[i]*asin((2*z[i])/span) - span*pow((1-pow(((2*z[i])/span),2)),3/2) + 3*span*pow(1-pow(((2*z[i])/span),2),0.5) - 3*M_PI*z[i]);
+	  distributed_moment[i] = (weight*(z[i]*M_PI*3.0-span*sqrt(1.0/(span*span)*(z[i]*z[i])*-4.0+1.0)*3.0+span*pow(1.0/(span*span)*(z[i]*z[i])*-4.0+1.0,3.0/2.0)-z[i]*asin((z[i]*2.0)/span)*6.0)*(-1.0/6.0))/M_PI;
+	  printf("%i:\t%f\t%f\t%f\t%f\n", i, span, weight, z[i], distributed_moment[i]);
 	}
 	
 	// Return the gold..
