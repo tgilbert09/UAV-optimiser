@@ -51,7 +51,8 @@ double *FUNC_lift_moment_distribution(double weight,
       return NULL;
 	
 	for( i = 0; i < number_of_points; ++i ){
-	  distributed_moment[i] = ((16*weight)/(pow(M_PI, 2)*pow(span,2))) * (pow(z[i],2)/2 - (pow(z[i],4))/(3*pow(span,2)) - (span*z[i])/3 + pow(span,2)/16);
+	  //distributed_moment[i] = ((16*weight)/(pow(M_PI, 2)*pow(span,2))) * (pow(z[i],2)/2 - (pow(z[i],4))/(3*pow(span,2)) - (span*z[i])/3 + pow(span,2)/16);
+	  distributed_moment[i] = weight/(6*M_PI) * ( 6*z[i]*asin((2*z[i])/span) - span*pow((1-pow(((2*z[i])/span),2)),3/2) + 3*span*pow(1-pow(((2*z[i])/span),2),0.5) - 3*M_PI*z[i]);
 	}
 	
 	// Return the gold..

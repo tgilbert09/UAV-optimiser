@@ -34,7 +34,7 @@ double *FUNC_wing_weight(int number_of_points, double *ib_area, double dz, doubl
       return NULL;
 		
 	for( i = 0; i < number_of_points; ++i ){
-		weight[i] = ib_area[i]*IB_MATERIAL_DENSITY*9.91 + chord[i]*1.923*9.81;
+		weight[i] = ib_area[i]*IB_MATERIAL_DENSITY*9.91 + chord[i]*SKIN_COEFFICIENT_1*SKIN_THICKNESS*SKIN_DENSITY*9.81;
 	}
 	
 	
