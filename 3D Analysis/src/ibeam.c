@@ -21,6 +21,10 @@ double *FUNC_ibeam_C(int number_of_points, double *z, double *chord, double thic
 	for( i = 0; i < ib_cutoff; ++i ){
 		ib_dim_C[i] = chord[i]* thick_over_chord * C;	
 	}
+	
+	for( i = ib_cutoff; i < number_of_points; ++i ){
+		ib_dim_C[i] = 0;	
+	}
 	return ib_dim_C;
 }
 
@@ -41,6 +45,10 @@ double *FUNC_ibeam_D(int number_of_points, double *z, double *chord, int ib_cuto
 	// Creates width dimension array upto cutoff point
 	for( i = 0; i < ib_cutoff; ++i ){
 		ib_dim_D[i] = chord[i] * D;	
+	}
+	
+	for( i = ib_cutoff; i < number_of_points; ++i ){
+		ib_dim_D[i] = 0;	
 	}
 	return ib_dim_D;
 }
@@ -76,12 +84,11 @@ double *FUNC_ibeam_B(int number_of_points, double *M, double *z, double *ib_dim_
 		}
 	}
 	
-	/*
+	
 	// Sorts out cap area
 	for( i = ib_cutoff; i < number_of_points; ++i ){
 		ib_dim_B[i] = 0.0;	
 	}
-	*/
 	return ib_dim_B;
 }
 
