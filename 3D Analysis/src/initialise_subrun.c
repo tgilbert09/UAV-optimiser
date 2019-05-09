@@ -79,11 +79,24 @@ double FUNC_init_run (double span, double root_chord, int report) {
 	}
 	}
 	
+	
 	if (ib_dim_B[0] < 0){
 		drag = 999;
 	}
 	
-	
+	// Print I-Beam information to a file
+	if (span == ISPAN && root_chord == ICHORD){
+		FILE *fp;
+		fp = fopen("IBeam_sizing.csv", "w");
+		fprintf(fp, "\nSpan Loc(m)\tChord(m)\tIB Height(m)\tIB Width(m)\tMoment(Nm)\tWeb Height(m)\tIB Area(m2)\tWing Weight(N)\n");
+		
+		for( i = 0; i < number_of_points; ++i ){
+			fprintf(fp, "%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", z[i], chord[i], ib_dim_C[i], ib_dim_D[i], total_moment[i], ib_dim_B[i], ib_area[i], wing_weight[i]);
+		}	
+		
+		fclose(fp);
+	}
+
 	
 	// Free memory n that
 	free(total_moment);

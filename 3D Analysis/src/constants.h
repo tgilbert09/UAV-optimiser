@@ -8,7 +8,7 @@
 #define SIGMA_MAX 290e6        // N/m^2
 #define IB_MATERIAL_DENSITY 2700    // kg/m^3
 // Allowable stress saftey factor (percentage of SIGMA_MAX allowable)
-#define SAFTEY_FACTOR 0.5      // unitless // supposed to be 0.19   0.035
+#define SAFTEY_FACTOR 0.167      // unitless // supposed to be 0.19   0.035
 
 // Structures
 // I-Beam dimensions - see latex report for diagram
@@ -40,13 +40,18 @@
 
 // Wing setup
 // Chord variable testing
-#define START_CHORD 0.4
+#define START_CHORD 0.2
 #define END_CHORD 1
 #define CHORD_POINTS_PER_METRE 100
 // Span variable testing
-#define START_SPAN 8
+#define START_SPAN 3
 #define END_SPAN 10
 #define SPAN_POINTS_PER_METRE 1
+
+// I-Beam Printer
+// Produces file of I-beam dimensions for values given below
+#define ICHORD 0.52
+#define ISPAN 10
 
 
 
