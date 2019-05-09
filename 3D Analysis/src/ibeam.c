@@ -69,7 +69,7 @@ double *FUNC_ibeam_B(int number_of_points, double *M, double *z, double *ib_dim_
 
 
 	double sig;
-	sig = SIGMA_MAX * SAFTEY_FACTOR;
+	sig = SIGMA_MAX / (SAFTEY_FACTOR*LIMIT_LOAD);
 	
 	// Calculates web height dimension array upto cutoff point
 	for( i = 0; i < ib_cutoff; ++i ){
@@ -79,8 +79,8 @@ double *FUNC_ibeam_B(int number_of_points, double *M, double *z, double *ib_dim_
 			ib_dim_B[i] = ib_dim_C[i];
 		}
 		// If B is getting closer to C so that it would be impossible to manufacture then set each flange to 1mm height
-		else if (ib_dim_B[i] > (ib_dim_C[i] - 0.002)){
-			ib_dim_B[i] = ib_dim_C[i] - 0.002;
+		else if (ib_dim_B[i] > (ib_dim_C[i] - 2*MIN_FLANGE)){
+			ib_dim_B[i] = ib_dim_C[i] - 2*MIN_FLANGE;
 		}
 	}
 	

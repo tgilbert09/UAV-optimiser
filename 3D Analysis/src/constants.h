@@ -7,10 +7,12 @@
 // Materials - Al 6061
 #define SIGMA_MAX 290e6        // N/m^2
 #define IB_MATERIAL_DENSITY 2700    // kg/m^3
-// Allowable stress saftey factor (percentage of SIGMA_MAX allowable)
-#define SAFTEY_FACTOR 0.167      // unitless // supposed to be 0.19   0.035
+// Allowable stress saftey factor
+#define SAFTEY_FACTOR 1.5     // unitless
+// Limit load due to banking/turning etc
+#define LIMIT_LOAD 4
 
-// Structures
+// Structures - I-Beam
 // I-Beam dimensions - see latex report for diagram
 // A is web thickness
 #define A 0.001
@@ -18,6 +20,10 @@
 #define C 0.9375
 // D*c is width (where c is aerofoil chord)
 #define D 0.133
+// Flange minimum thickness (for manufacturability)
+#define MIN_FLANGE 0.002
+
+// Structures - Wing Skin
 // Cap length is the amount shorter the I-beam is than the wing
 // Special cap structure used for the rest of the wing
 #define CAP_LENGTH 0.6         // m

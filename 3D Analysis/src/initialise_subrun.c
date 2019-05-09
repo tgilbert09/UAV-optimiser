@@ -93,7 +93,6 @@ double FUNC_init_run (double span, double root_chord, int report) {
 		for( i = 0; i < number_of_points; ++i ){
 			fprintf(fp, "%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", z[i], chord[i], ib_dim_C[i], ib_dim_D[i], ib_dim_B[i], A, ib_area[i], total_moment[i], wing_weight[i]);
 		}	
-		
 		fclose(fp);
 	}
 
